@@ -1,0 +1,120 @@
+==============================================================================================================
+
+=======================================    03 October 2019     ===============================================
+Identity & Access Management
+Regions:
+
+# Multiple regions--> multiple availibility regions
+# Identity and access management -- global service
+# others are related to the regions..
+# US east1 is alias for actual zone..
+# Use groups for similar access, assign a policy to view resources. 
+# DO NOT make other person as ADMIN
+# 
+------------------------------------------------------------------------------------
+
+IAM Policy:
+
+# JSON
+# Version of the API -> They use dates instead of v1, v2
+# It's the date when their version was applied.
+# ID -> uuid
+# Statement -> allow, action, what action you are looking at and which resource on which is applied to. -> * means all resources (putting a * is a bad practice)
+# Conditions -> for eg., it matches something then that policy will be implemented.
+# Action -> selectively deny access to some resources.
+# Examples on IAM Policies -> Policy applied to any particular region.
+# Different types of policies-> customer managed, aws managed
+# Policy ARN -> double colon -> you will provide your account number there.
+# Not everything that we can do in amazin is available on console. We will have to use aws cli to see all the options.
+# Once VPC is created we can enable the DNS reolution and DNS host names
+# Example -> Customer managed policies. Circle CI will build a html file which will push it to S3 bucket. WHen the file is pushed it doesn't give the read permission just the write. We can change the policies depending upon the requirement.
+
+Q. Circle CI ??
+
+--> Setting a Group
+# Provide a name, apply or skip policy. When creating a user it wil ask what kind of access you are giving? Programmatic or AWS Management console access??
+# You can tag a user, every resource that we create can be tagged.
+# Tags are very important.
+# Download the csv file.(credentials)
+# Programmetical access - Amazon CLI access
+# If you want to practice something, create a third member account and do things there.
+# If you have a traffic in MYSQL thn change the database to stand alone server.
+# You can't make the random change in the application w/o validating the whole pipeline
+
+Snowflake Servers
+
+# They are bad.
+# Don't create any resources which are snow flake
+# The infrastructure is very fragile
+# Principles -> e.g. If US east 1 goes down go to US east 2 (if you have the backup)
+
+--> CLI Commands
+.aws vi config
+.aws vi credentials
+
+-- copy credentials and create your own profile
+one on east1 and other on east2
+[dev]
+region = us-east-1
+output=false
+
+.aws export AWS_PROFILE = dev
+.aws
+
+# commands are present in the aws cli user manual
+
+.awsdevenv --> File
+export AWS_PROFILE = dev
+export AWS_DEFAULTREGION ....
+
+aws source .awsdevenv
+
+env -> will show the environment settings for the session
+
+# every time you make api call from cli their will be authentication call"
+--> make sure your host clock is in sync with the amazon clock --> VM clock is in synced with the aws clock.
+
+# vpc is in ec2 in the cli docimentaion
+# create a vpc create vpc command
+# export AWS_REGION = us-east-1
+what is vpc?
+
+jq library in shell script -- for JSON
+# Stacks -> all the resources in the stack get created.
+# Template has different parameters.
+
+#Intrinsic functions: eg. to join the string
+
+before deleting the bicket check if the stack is empty or not. Before deleting the bucket delete the stack.
+
+# Terraform -> 
+.terra directory -> where all the plugins are installed
+
+==============================================================================================================
+
+=======================================    10 October 2019     ===============================================
+
+# Every time you make query, the revolver etc which helps in doing the query will cache the records. Cache will expire at some point.
+
+# Purpose of AMI : immutable services with latest patches installed
+
+# Instead of using old servers, using new servers to run the application. Rollout is frequent enough and this is known as blue green deployment.
+#  
+
+==============================================================================================================
+
+=======================================    17 October 2019     ===============================================
+
+When you de fragment the hard drive? What happens?
+
+We can use the disk and attach it to the EC2 instance while creating instance.
+EBS volume is set to be deleted when you reregister it,
+Delete the EBS volume when you terminate the instance.
+
+Elastic store is very good in instance as it takes time to process in hard drive.
+
+Why S3 os not preferred over EFS?
+Ass 6 - Ssh 20, http 80 , https 443 and 3000
+
+
+
